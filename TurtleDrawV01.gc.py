@@ -1,21 +1,20 @@
 
 import turtle
+import math
 
-inputFileName = input("Enter the file name: TurtleDrawLines.txt\n")
+inputFileName = input("\nEnter the file name: TurtleDrawLines.txt\n")
 while inputFileName != "TurtleDrawLines.txt":
-    inputFileName = input("ERROR! Invalid file name. Please enter the file name: TurtleDrawLines.txt\n")
+    inputFileName = input("\nERROR! Invalid file name. Files are Case Sensitive.\nPlease enter the file name: TurtleDrawLines.txt\n")
 
 TextFile = open(inputFileName, 'r')
-
 line = TextFile.readline()
-
 LineDrawer = turtle.Screen()
 LineDrawer.setup(450, 450)
-
 LineDrawer = turtle.Turtle()
 LineDrawer.speed(20)
-
 LineDrawer.penup()
+
+distance0 = 0
 
 while line:
 
@@ -28,18 +27,17 @@ while line:
         LineDrawer.color(color)
         LineDrawer.goto(x,y)
         LineDrawer.pendown()
-        
-        while LineDrawer == LineDrawer.pendown():
-            LineDrawer = turtle.distance(x,y)
-            totalDistance = turtle.distance(x,y) + turtle.distance(x,y)
+
+        distance = math.sqrt((x)**2+(y)**2)
+        distance0 = distance0 + distance
 
     if splits[0] != color:
         LineDrawer.penup()
-        LineDrawer != turtle.distance(x,y)
         
     line = TextFile.readline()
 
-totalDistance = turtle.distance(x,y) + turtle.distance(x,y)
+totalDistance = distance0
+print(totalDistance)
 turtle.write(totalDistance)
 turtle.done()
 TextFile.close()
